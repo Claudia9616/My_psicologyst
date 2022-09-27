@@ -1,6 +1,8 @@
 from flask import render_template, session, flash, redirect, url_for
 
 from app.forms import LoginForm
+from app.helpers.users import get_user
+from app.models import UserData
 
 from . import auth
 
@@ -12,14 +14,20 @@ def login():
         'login_form': LoginForm()
     }
 
-    # if login_form.validate_on_submit():
-    #     username = login_form.username.data
-    #     session['username'] = username
+    if login_form.validate_on_submit():
+        email = login_form.email.data
+        password = login_form.password.data
 
-    #     flash('User registered successfully')
+        user_doc = get_user(email)
 
-    #     return redirect(url_for('index'))
+        if user_doc:
+            password_db = user_doc['password']
 
-    # return render_template('login.html', **context)
+            if password == password_db:
+                user_data = UserData(email, password)
 
-    return "Auth"
+        flash('User registered successfully')
+
+        return redirect(url_for('index'))
+
+    return render_template('login.html', **context)

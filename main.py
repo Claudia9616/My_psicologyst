@@ -2,9 +2,12 @@ import os
 
 from app import create_app
 
+from flask_login import login_required
+
 app = create_app()
 
-@app.route('/')
+@app.route('/', methods=['GET'])
+@login_required
 def index():
     return 'Hello world'
 
