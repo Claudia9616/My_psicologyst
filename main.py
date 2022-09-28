@@ -1,15 +1,17 @@
 import os
 
+from flask import render_template
+from flask_login import login_required
+
 from app import create_app
 
-from flask_login import login_required
+
 
 app = create_app()
 
 @app.route('/', methods=['GET'])
-@login_required
 def index():
-    return 'Hello world'
+    return render_template('home.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

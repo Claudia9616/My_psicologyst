@@ -9,8 +9,8 @@ from . import users
 
 users_collection = mongo.users
 
-@users.route('/sing_up', methods=['GET', 'POST'])
-def create_user():
+@users.route('/signup', methods=['GET', 'POST'])
+def signup():
     create_user = CreateUser()
 
     context = {
@@ -35,4 +35,4 @@ def create_user():
         else:
             flash("The user already exist!")
     
-    return render_template('sing_up.html', **context)
+    return render_template('signup.html', **context)
