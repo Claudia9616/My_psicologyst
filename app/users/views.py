@@ -47,7 +47,7 @@ def signup():
             user = UserModel(UserData(email, password_hash))
             login_user(user)
 
-            return redirect(url_for('index'))
+            return redirect(url_for('home'))
         else:
             flash("The user already exist!")
     

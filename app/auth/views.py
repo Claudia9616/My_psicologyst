@@ -19,7 +19,7 @@ def login():
     
     if current_user.is_authenticated:
         flash("Already logged in")
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
 
     if login_form.validate_on_submit():
         email = login_form.email.data
@@ -35,7 +35,7 @@ def login():
                 user = UserModel(user_data)
 
                 login_user(user)
-                redirect(url_for('index'))
+                redirect(url_for('home'))
             else:
                 flash("Incorrect username or password")
 
@@ -44,7 +44,7 @@ def login():
 
         flash('User registered successfully')
 
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
 
     return render_template('login.html', **context)
 
@@ -52,4 +52,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('index'))
