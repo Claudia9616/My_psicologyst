@@ -11,6 +11,10 @@
                 <span class="icon-bar"></span>
             </button>
 
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <h4>My psychologist</h4>
+            </a>
+
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -22,6 +26,7 @@
                 {% endif %}
 
                 {% if current_user.is_anonymous %}
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                     <li><a href="{{ url_for('users.signup') }}">Signup</a></li>
                 {% endif %}
             </ul>
