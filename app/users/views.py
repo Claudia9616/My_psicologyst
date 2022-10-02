@@ -1,8 +1,9 @@
 from werkzeug.security import generate_password_hash 
 
 from flask import render_template, flash, redirect, url_for
+from flask_login import login_user
 
-from app.models import UserSignUp
+from app.models import UserSignUp, UserData, UserModel
 from app.forms import CreateUser
 from app.helpers.users import get_user_by_key, create_user
 
@@ -31,7 +32,7 @@ def signup():
             age = signup_form.age.data
             gender = signup_form.gender.data
 
-            user_data = UserSignUp(
+            new_user = UserSignUp(
                 email, 
                 password_hash, 
                 first_name, 
@@ -41,10 +42,12 @@ def signup():
                 gender
             )
 
-            create_user(user_data)
+            create_user(new_user)
+ 
+            user = UserModel(UserData(email, password_hash))
+            login_user(user)
 
-
-
+            return redirect(url_for('index'))
         else:
             flash("The user already exist!")
     

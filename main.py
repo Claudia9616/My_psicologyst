@@ -10,6 +10,7 @@ from app import create_app
 app = create_app()
 
 @app.route('/', methods=['GET'])
+@login_required
 def index():
     return render_template('home.html')
 

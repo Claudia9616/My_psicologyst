@@ -21,7 +21,7 @@ def create_app():
 
     app.config.from_object(Config)
 
-    # login_manager.init_app(app)
+    login_manager.init_app(app)
 
     app.register_blueprint(auth)
     app.register_blueprint(users)
