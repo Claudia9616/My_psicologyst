@@ -11,4 +11,10 @@
     {% if username %}
         <h1>Welcome {{ username | capitalize}} </h1>
     {% endif %}
+
+    <ul class="list-group">
+        {% for story in stories %}
+            {{ macros.render_stories(story) }}
+        {% endfor %}
+    </ul>
 {% endblock %}

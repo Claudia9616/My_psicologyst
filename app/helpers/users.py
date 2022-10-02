@@ -7,6 +7,6 @@ def get_user_by_key(value, key='email'):
 def create_user(user_data):
     mongo.users.insert_one(user_data.__dict__)
 
-def get_user_name(email):
+def get_user_data(email, data="first_name"):
     user = get_user_by_key(email)
-    return user["first_name"]
+    return user[data]

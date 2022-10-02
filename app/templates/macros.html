@@ -1,0 +1,35 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro render_stories(story) %}
+    <li class="list-group-item">
+        <span class="badge">
+            {{ story["first_name"] }}
+            {{ story["last_name"] }}
+            <br> <br>
+            age: {{ story["age"] }}
+        </span>
+
+        
+        <h4>Story</h4>
+        {{ story["story"] }}
+
+        <br><br>
+        How did you feel using the platform? 
+        <br>
+        {{ story["score"] }}
+
+        <br><br>
+        Do you recommend the platform? 
+        <br>
+        {{ story["recommendation"] }}
+    </li>
+{% endmacro %}
+
+{% macro render_movies(movie) %}
+    <li class="list-group-item">
+        <span class="badge">
+            {{ movie["vote_average"] }}
+        </span>
+        {{ movie["title"] }}
+    </li>
+{% endmacro %}
