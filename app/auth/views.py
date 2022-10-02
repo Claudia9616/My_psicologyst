@@ -1,7 +1,7 @@
-from flask import render_template, session, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for
 
 from app.forms import LoginForm
-from app.helpers.users import get_user
+from app.helpers.users import get_user_by_key
 from app.models import UserData
 
 from . import auth
@@ -18,7 +18,7 @@ def login():
         email = login_form.email.data
         password = login_form.password.data
 
-        user_doc = get_user(email)
+        user_doc = get_user_by_key(email)
 
         if user_doc:
             password_db = user_doc['password']

@@ -1,6 +1,8 @@
 from app.db import mongo
 
-users_collection = mongo.users
+def get_user_by_key(value, key='email'):
+    user = mongo.users.find_one({key: value})
+    return user
 
-def get_user(email):
-    pass
+def create_user(user_data):
+    mongo.users.insert_one(user_data.__dict__)
