@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from .config import Config
 from .auth import auth
 from .users import users
+from .stories import stories
 from .models import UserModel
 
 login_manager = LoginManager()
@@ -25,5 +26,6 @@ def create_app():
 
     app.register_blueprint(auth)
     app.register_blueprint(users)
+    app.register_blueprint(stories)
 
     return app

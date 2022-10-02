@@ -1,8 +1,7 @@
-import email
 from flask_wtf import FlaskForm
 
 from wtforms import StringField, PasswordField, SubmitField, EmailField, SelectField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length
 
 class LoginForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired()])
@@ -15,4 +14,21 @@ class CreateUser(LoginForm):
     id_number = IntegerField('Id number', validators=[DataRequired()])
     age = IntegerField('Age', validators=[DataRequired()])
     gender = SelectField('Gender', choices=['Male', 'Female', 'Other'], validators=[DataRequired()])
+    submit = SubmitField('Send')
+
+class SuccessStory(FlaskForm):
+    score = SelectField(
+        'Satisfaction level', 
+        choices=['Good', 'Medium', 'Bad'], 
+        validators=[DataRequired()]
+    )
+    story = StringField(
+        "Success story", 
+        validators=[DataRequired(), Length(min=10, max=250)]
+    )
+    recommendation = SelectField(
+        'Do you recommend the platform?', 
+        choices=['Yes', 'No'], 
+        validators=[DataRequired()]
+    )
     submit = SubmitField('Send')

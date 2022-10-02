@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    {{ super() }}
+    Success Story
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Tell us your story</h1>
+    </div>
+
+    <div class="container">
+        {{ wtf.quick_form(success_story_form) }}
+    </div>
+{% endblock %}
